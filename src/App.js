@@ -33,19 +33,18 @@ const getAwayTouchDown = e => {
   setAwayTouchDown(awayTouchDown + 7)
 }
 
-setTimeout(() => {
+// setTimeout(() => {
   
-  setTimer(!timer);
-}, 1000);
+//   setTimer(!timer);
+// }, 1000);
 
-// useEffect (()=>{
-//   setTimeout(() => {
-  
-//     setTimer(count);
-//   }, 1000);
-//   setCount(10);
-//   return () => clearTimeout(timer)
-// }, [count, timer])
+useEffect (() =>{
+  let id= setInterval(()=>{
+    setCount(count + 1);
+  }, 1000);
+  return () => {clearInterval(id)}
+})
+
 
   return (
     <div className="container">
@@ -58,7 +57,7 @@ setTimeout(() => {
 
             <div className="home__score">{homeScore + homeTouchDown}</div>
           </div>
-  <div className="timer">00:03 {timer ? '1': '2'} </div>
+  <div className="timer"> {count} </div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore + awayTouchDown}</div>
