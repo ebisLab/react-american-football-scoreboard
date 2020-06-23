@@ -6,16 +6,11 @@ import BottomRow from "./BottomRow";
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
 const [score, setScore] = useState(0);
-const [count, setCount] = useState(0);
-const [timer, setTimer] = useState(0);
+const [count, setCount] = useState(60);
 const [homeScore, setHomeScore] = useState(0);
 const [homeTouchDown, setHomeTouchDown] = useState(0);
 const [awayScore, setAwayScore] = useState(0);
 const [awayTouchDown, setAwayTouchDown] = useState(0);
-
-const getScore = e => {
-  setScore(score + 1);
-}
 
 const getHomeScore = e =>{
   setHomeScore(homeScore + 3)
@@ -33,15 +28,16 @@ const getAwayTouchDown = e => {
   setAwayTouchDown(awayTouchDown + 7)
 }
 
-// setTimeout(() => {
-  
-//   setTimer(!timer);
-// }, 1000);
 
 useEffect (() =>{
   let id= setInterval(()=>{
-    setCount(count + 1);
+    setCount(count - 1);
   }, 1000);
+
+  if (count === 0) {
+   console.log('done!')
+   clearInterval(id)
+}
   return () => {clearInterval(id)}
 })
 
